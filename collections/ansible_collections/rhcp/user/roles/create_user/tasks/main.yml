@@ -1,0 +1,21 @@
+---
+# tasks file for create_user
+- name: Log in and get the user id
+  include_role:
+    name: '{{ item }}'
+  loop:
+    - rhcp.user.get_access_token
+    - rhcp.user.get_account_id
+
+# TODO: Add logic to check if user exists, and if the existing user is diabled
+
+- name: Create a new user
+  uri:
+    url: https://api.access.redhat.com/account/v1/accounts/{{ account_id }}/users
+    method: POST
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{ access_token }}"
+    body_format: json
+    body: "{{ lookup('template','new_user.json.j2') }}"     
+  register: new_user

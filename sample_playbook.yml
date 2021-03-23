@@ -1,0 +1,20 @@
+--- 
+- name: Create a new user
+  hosts: localhost
+  gather_facts: no
+  vars:
+    offline_token: <TOKEN>
+    username: "ansible_demo_user"
+    email: "ansible_demo_user@redhat.com"
+    salutation: "Mr."
+    firstName: "Ansible"
+    lastName: "User"
+    phone: "5555555555"
+    address_city: "Raleigh"
+    address_country: "US"
+    address_county: "Wake"
+    address_state: "NC"
+    address_street: "100 E Davie St"
+    address_zipcode: "27601"
+  roles:
+  - rhcp.user.create_user

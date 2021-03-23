@@ -1,0 +1,14 @@
+---
+# defaults file for create_user
+username: "ansible_demo_user"
+email: "ansoble_demo_user@redhat.com"
+salutation: "Mr."
+firstName: "Ansible"
+lastName: "User"
+phone: "5555555555"
+address_city: "Raleigh"
+address_country: "US"
+address_county: "Wake"
+address_state: "NC"
+address_street: "100 E Davie St"
+address_zipcode: "27601"

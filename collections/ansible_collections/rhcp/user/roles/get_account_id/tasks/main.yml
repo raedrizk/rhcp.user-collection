@@ -1,0 +1,23 @@
+---
+# tasks file for get_account_id
+
+- name: Make sure that the access_token has been retrieved
+  ansible.builtin.assert:
+    that:
+      - access_token is defined
+    success_msg: "'access_token' has been retrieved, continuing"
+    fail_msg: "'access_token' must be retrieved. Run the 'get_access_token' role first"
+
+- name: Get the access token
+  ansible.builtin.uri:
+    url: https://api.access.redhat.com/account/v1/accounts
+    method: GET
+    return_content: yes
+    headers:
+      Authorization: "Bearer {{ access_token }}"
+  register: account_info
+
+- name: set a fact for the account_id
+  ansible.builtin.set_fact:
+    account_id: "{{ account_info.json.body[0].id }}"
+
